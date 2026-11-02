@@ -1,0 +1,25 @@
+# Premissas de engenharia e custo. ILUSTRATIVAS: servem para demonstrar o método e devem ser
+# calibradas com os critérios de planejamento e o banco de preços da distribuidora.
+
+saturacao:
+  # Trafo saturado quando a GD instalada na BT atinge esta fração da potência nominal (kW / kVA).
+  # A REN ANEEL 1.000/2021 permite à distribuidora exigir obras quando a conexão provoca inversão do
+  # fluxo de potência no posto de transformação; GD >= potência do trafo é usada aqui como indicador
+  # simples desse risco, não como o critério oficial de nenhuma distribuidora.
+  limite_trafo: 1.0
+  limite_trafo_alerta: 0.8
+  # Alimentador: GD instalada (BT + MT) x fator de simultaneidade da geração solar no pico do meio-dia
+  # comparada à carga média do alimentador (consumo anual / 8760 h). Acima de 1, o meio-dia tende a
+  # exportar energia para a subestação.
+  fator_simultaneidade_solar: 0.7
+  limite_alimentador: 1.0
+
+reforco:
+  # Troca do trafo pelo menor tamanho padrão que leve a penetração de volta ao limite.
+  tamanhos_padrao_kva: [15, 30, 45, 75, 112.5, 150, 225, 300, 500, 750, 1000]
+  custo_por_kva_rs: 300        # equipamento
+  custo_fixo_troca_rs: 8000    # mão de obra, desligamento programado e retirada
+
+previsao:
+  horizonte_anos: 3
+  ano_maximo_saturacao: 2035

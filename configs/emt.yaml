@@ -1,0 +1,21 @@
+# Recorte: Energisa Mato Grosso (EMT)
+distribuidora:
+  sigla: EMT
+  uf: MT
+
+paths:
+  raw: data/raw
+  interim: data/interim
+  processed: data/processed
+
+bdgd:
+  # snapshots de 31/12 de cada ano (id do item no ArcGIS Hub da ANEEL)
+  snapshots:
+    2018: b6900e72a13946b6a2dc015aaf6d6ccd
+    2019: f15e84cabd564d31869c3af5d7855376
+    2020: bc9ef518725a416a99e08c99e2d979d1
+    2021: 13d6ff510a4c4a7fac64f0e119beb245
+    2022: 94a1b3fa56e3442fb8a2b3a8a3dc4df8
+    2023: f6095aa7e5c64119ab46e3efe46b77d5
+    2024: 8fed7443387d4d04a361e7f4d1edea64
+    2025: 02a120db1b5149709f8d371c21635adc

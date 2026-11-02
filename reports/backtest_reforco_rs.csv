@@ -1,0 +1,13 @@
+metodo,k,acertos,precisao,rs_mi_em_trafos_que_saturaram,rs_mi_antecipado_sem_necessidade
+modelo,1000,802,0.802,37.0685,7.029
+modelo,2000,1471,0.7355,69.08675,20.11025
+modelo,5000,3116,0.6232,146.37325,75.03675
+proporcional_gd_atual,1000,362,0.362,18.08875,18.7705
+proporcional_gd_atual,2000,664,0.332,32.4035,35.11625
+proporcional_gd_atual,5000,1695,0.339,81.2805,93.35275
+proporcional_ultimo_ano,1000,153,0.153,6.13575,17.87525
+proporcional_ultimo_ano,2000,431,0.2155,18.88675,36.22425
+proporcional_ultimo_ano,5000,1576,0.3152,73.37,93.9305
+proporcional_consumidores,1000,657,0.657,29.2155,11.8655
+proporcional_consumidores,2000,1318,0.659,59.7695,24.4865
+proporcional_consumidores,5000,2950,0.59,136.32725,76.31525

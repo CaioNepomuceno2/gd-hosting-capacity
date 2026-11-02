@@ -1,0 +1,566 @@
+{
+  "premissas": {
+    "saturacao": {
+      "limite_trafo": 1.0,
+      "limite_trafo_alerta": 0.8,
+      "fator_simultaneidade_solar": 0.7,
+      "limite_alimentador": 1.0
+    },
+    "reforco": {
+      "tamanhos_padrao_kva": [
+        15,
+        30,
+        45,
+        75,
+        112.5,
+        150,
+        225,
+        300,
+        500,
+        750,
+        1000
+      ],
+      "custo_por_kva_rs": 300,
+      "custo_fixo_troca_rs": 8000
+    },
+    "previsao": {
+      "horizonte_anos": 3,
+      "ano_maximo_saturacao": 2035
+    }
+  },
+  "diagnostico": [
+    {
+      "ano": 2018,
+      "trafos": 212963,
+      "trafos_com_uc": 177389,
+      "unidades_gd_bt": 1465,
+      "gd_bt_mw": 17.6237,
+      "gd_mt_mw": 0.0,
+      "frac_trafos_com_gd": 0.007,
+      "frac_trafos_saturados": 0.0001,
+      "frac_trafos_alerta": 0.0003,
+      "trafos_saturados": 21,
+      "frac_alimentadores_acima": 0.0,
+      "alimentadores_acima": 0,
+      "reforco_acumulado_rs_mi": 0.7552
+    },
+    {
+      "ano": 2019,
+      "trafos": 225576,
+      "trafos_com_uc": 184985,
+      "unidades_gd_bt": 7599,
+      "gd_bt_mw": 106.4726,
+      "gd_mt_mw": 0.0,
+      "frac_trafos_com_gd": 0.03,
+      "frac_trafos_saturados": 0.001,
+      "frac_trafos_alerta": 0.0024,
+      "trafos_saturados": 191,
+      "frac_alimentadores_acima": 0.0034,
+      "alimentadores_acima": 2,
+      "reforco_acumulado_rs_mi": 6.9505
+    },
+    {
+      "ano": 2020,
+      "trafos": 232107,
+      "trafos_com_uc": 193283,
+      "unidades_gd_bt": 19765,
+      "gd_bt_mw": 268.2015,
+      "gd_mt_mw": 0.0,
+      "frac_trafos_com_gd": 0.0608,
+      "frac_trafos_saturados": 0.0035,
+      "frac_trafos_alerta": 0.0071,
+      "trafos_saturados": 685,
+      "frac_alimentadores_acima": 0.0118,
+      "alimentadores_acima": 7,
+      "reforco_acumulado_rs_mi": 23.4284
+    },
+    {
+      "ano": 2021,
+      "trafos": 240294,
+      "trafos_com_uc": 182899,
+      "unidades_gd_bt": 42070,
+      "gd_bt_mw": 494.8095,
+      "gd_mt_mw": 179.0553,
+      "frac_trafos_com_gd": 0.1026,
+      "frac_trafos_saturados": 0.0087,
+      "frac_trafos_alerta": 0.0152,
+      "trafos_saturados": 1588,
+      "frac_alimentadores_acima": 0.0801,
+      "alimentadores_acima": 47,
+      "reforco_acumulado_rs_mi": 55.9145
+    },
+    {
+      "ano": 2022,
+      "trafos": 248117,
+      "trafos_com_uc": 200518,
+      "unidades_gd_bt": 66284,
+      "gd_bt_mw": 673.1482,
+      "gd_mt_mw": 330.4123,
+      "frac_trafos_com_gd": 0.1259,
+      "frac_trafos_saturados": 0.0115,
+      "frac_trafos_alerta": 0.0224,
+      "trafos_saturados": 2307,
+      "frac_alimentadores_acima": 0.1381,
+      "alimentadores_acima": 88,
+      "reforco_acumulado_rs_mi": 73.3762
+    },
+    {
+      "ano": 2023,
+      "trafos": 252648,
+      "trafos_com_uc": 190984,
+      "unidades_gd_bt": 102957,
+      "gd_bt_mw": 1027.0326,
+      "gd_mt_mw": 544.1882,
+      "frac_trafos_com_gd": 0.1698,
+      "frac_trafos_saturados": 0.0228,
+      "frac_trafos_alerta": 0.0421,
+      "trafos_saturados": 4359,
+      "frac_alimentadores_acima": 0.3601,
+      "alimentadores_acima": 233,
+      "reforco_acumulado_rs_mi": 149.2072
+    },
+    {
+      "ano": 2024,
+      "trafos": 262719,
+      "trafos_com_uc": 195964,
+      "unidades_gd_bt": 160082,
+      "gd_bt_mw": 1515.7956,
+      "gd_mt_mw": 730.3799,
+      "frac_trafos_com_gd": 0.2131,
+      "frac_trafos_saturados": 0.0392,
+      "frac_trafos_alerta": 0.0691,
+      "trafos_saturados": 7673,
+      "frac_alimentadores_acima": 0.5899,
+      "alimentadores_acima": 397,
+      "reforco_acumulado_rs_mi": 266.4625
+    },
+    {
+      "ano": 2025,
+      "trafos": 273401,
+      "trafos_com_uc": 203172,
+      "unidades_gd_bt": 214157,
+      "gd_bt_mw": 1974.2623,
+      "gd_mt_mw": 993.1731,
+      "frac_trafos_com_gd": 0.2514,
+      "frac_trafos_saturados": 0.0571,
+      "frac_trafos_alerta": 0.0948,
+      "trafos_saturados": 11592,
+      "frac_alimentadores_acima": 0.6801,
+      "alimentadores_acima": 474,
+      "reforco_acumulado_rs_mi": 420.7672
+    }
+  ],
+  "backtest_totais": {
+    "origem": 2022,
+    "horizonte": 3,
+    "total_observado_mw": 1161.100885,
+    "total_ritmo_ultimo_ano_mw": 817.5735900000001,
+    "erro_total_ritmo_pct": -29.586343395130555
+  },
+  "backtest": [
+    {
+      "total": "total_observado",
+      "metodo": "modelo",
+      "mae_kw": 4.7714,
+      "spearman_add": 0.5266,
+      "n_universo": 197077,
+      "novos_saturados_obs": 13241,
+      "average_precision": 0.3714,
+      "novos_saturados_prev": 6398,
+      "precisao": 0.5761,
+      "recall": 0.2784,
+      "acertos_top1000": 802,
+      "acertos_top5000": 3116,
+      "acertos_top10000": 4687
+    },
+    {
+      "total": "total_observado",
+      "metodo": "proporcional_gd_atual",
+      "mae_kw": 6.9619,
+      "spearman_add": 0.4943,
+      "n_universo": 197077,
+      "novos_saturados_obs": 13241,
+      "average_precision": 0.2131,
+      "novos_saturados_prev": 9818,
+      "precisao": 0.3439,
+      "recall": 0.255,
+      "acertos_top1000": 362,
+      "acertos_top5000": 1695,
+      "acertos_top10000": 3433
+    },
+    {
+      "total": "total_observado",
+      "metodo": "proporcional_ultimo_ano",
+      "mae_kw": 7.8015,
+      "spearman_add": 0.4233,
+      "n_universo": 197077,
+      "novos_saturados_obs": 13241,
+      "average_precision": 0.1976,
+      "novos_saturados_prev": 8026,
+      "precisao": 0.356,
+      "recall": 0.2158,
+      "acertos_top1000": 153,
+      "acertos_top5000": 1576,
+      "acertos_top10000": 3479
+    },
+    {
+      "total": "total_observado",
+      "metodo": "proporcional_consumidores",
+      "mae_kw": 4.9799,
+      "spearman_add": 0.5579,
+      "n_universo": 197077,
+      "novos_saturados_obs": 13241,
+      "average_precision": 0.3277,
+      "novos_saturados_prev": 6501,
+      "precisao": 0.5488,
+      "recall": 0.2695,
+      "acertos_top1000": 657,
+      "acertos_top5000": 2950,
+      "acertos_top10000": 4573
+    },
+    {
+      "total": "total_observado",
+      "metodo": "persistencia",
+      "mae_kw": 5.8254,
+      "spearman_add": null,
+      "n_universo": 197077,
+      "novos_saturados_obs": 13241,
+      "average_precision": 0.2132,
+      "novos_saturados_prev": 0,
+      "precisao": 0.0,
+      "recall": 0.0,
+      "acertos_top1000": 362,
+      "acertos_top5000": 1695,
+      "acertos_top10000": 3430
+    },
+    {
+      "total": "ritmo_ultimo_ano",
+      "metodo": "modelo",
+      "mae_kw": 4.5405,
+      "spearman_add": 0.5266,
+      "n_universo": 197077,
+      "novos_saturados_obs": 13241,
+      "average_precision": 0.3599,
+      "novos_saturados_prev": 3640,
+      "precisao": 0.6681,
+      "recall": 0.1837,
+      "acertos_top1000": 809,
+      "acertos_top5000": 2958,
+      "acertos_top10000": 4464
+    },
+    {
+      "total": "ritmo_ultimo_ano",
+      "metodo": "proporcional_gd_atual",
+      "mae_kw": 6.0911,
+      "spearman_add": 0.4943,
+      "n_universo": 197077,
+      "novos_saturados_obs": 13241,
+      "average_precision": 0.2132,
+      "novos_saturados_prev": 7796,
+      "precisao": 0.3452,
+      "recall": 0.2032,
+      "acertos_top1000": 362,
+      "acertos_top5000": 1695,
+      "acertos_top10000": 3424
+    },
+    {
+      "total": "ritmo_ultimo_ano",
+      "metodo": "proporcional_ultimo_ano",
+      "mae_kw": 6.6909,
+      "spearman_add": 0.4233,
+      "n_universo": 197077,
+      "novos_saturados_obs": 13241,
+      "average_precision": 0.1987,
+      "novos_saturados_prev": 6575,
+      "precisao": 0.3545,
+      "recall": 0.176,
+      "acertos_top1000": 155,
+      "acertos_top5000": 1649,
+      "acertos_top10000": 3478
+    },
+    {
+      "total": "ritmo_ultimo_ano",
+      "metodo": "proporcional_consumidores",
+      "mae_kw": 4.6281,
+      "spearman_add": 0.5579,
+      "n_universo": 197077,
+      "novos_saturados_obs": 13241,
+      "average_precision": 0.3283,
+      "novos_saturados_prev": 3515,
+      "precisao": 0.6475,
+      "recall": 0.1719,
+      "acertos_top1000": 721,
+      "acertos_top5000": 2857,
+      "acertos_top10000": 4456
+    },
+    {
+      "total": "ritmo_ultimo_ano",
+      "metodo": "persistencia",
+      "mae_kw": 5.8254,
+      "spearman_add": null,
+      "n_universo": 197077,
+      "novos_saturados_obs": 13241,
+      "average_precision": 0.2132,
+      "novos_saturados_prev": 0,
+      "precisao": 0.0,
+      "recall": 0.0,
+      "acertos_top1000": 362,
+      "acertos_top5000": 1695,
+      "acertos_top10000": 3430
+    }
+  ],
+  "backtest_reforco": [
+    {
+      "metodo": "modelo",
+      "k": 1000,
+      "acertos": 802,
+      "precisao": 0.802,
+      "rs_mi_em_trafos_que_saturaram": 37.0685,
+      "rs_mi_antecipado_sem_necessidade": 7.029
+    },
+    {
+      "metodo": "modelo",
+      "k": 2000,
+      "acertos": 1471,
+      "precisao": 0.7355,
+      "rs_mi_em_trafos_que_saturaram": 69.0868,
+      "rs_mi_antecipado_sem_necessidade": 20.1102
+    },
+    {
+      "metodo": "modelo",
+      "k": 5000,
+      "acertos": 3116,
+      "precisao": 0.6232,
+      "rs_mi_em_trafos_que_saturaram": 146.3733,
+      "rs_mi_antecipado_sem_necessidade": 75.0368
+    },
+    {
+      "metodo": "proporcional_gd_atual",
+      "k": 1000,
+      "acertos": 362,
+      "precisao": 0.362,
+      "rs_mi_em_trafos_que_saturaram": 18.0888,
+      "rs_mi_antecipado_sem_necessidade": 18.7705
+    },
+    {
+      "metodo": "proporcional_gd_atual",
+      "k": 2000,
+      "acertos": 664,
+      "precisao": 0.332,
+      "rs_mi_em_trafos_que_saturaram": 32.4035,
+      "rs_mi_antecipado_sem_necessidade": 35.1162
+    },
+    {
+      "metodo": "proporcional_gd_atual",
+      "k": 5000,
+      "acertos": 1695,
+      "precisao": 0.339,
+      "rs_mi_em_trafos_que_saturaram": 81.2805,
+      "rs_mi_antecipado_sem_necessidade": 93.3528
+    },
+    {
+      "metodo": "proporcional_ultimo_ano",
+      "k": 1000,
+      "acertos": 153,
+      "precisao": 0.153,
+      "rs_mi_em_trafos_que_saturaram": 6.1358,
+      "rs_mi_antecipado_sem_necessidade": 17.8752
+    },
+    {
+      "metodo": "proporcional_ultimo_ano",
+      "k": 2000,
+      "acertos": 431,
+      "precisao": 0.2155,
+      "rs_mi_em_trafos_que_saturaram": 18.8868,
+      "rs_mi_antecipado_sem_necessidade": 36.2242
+    },
+    {
+      "metodo": "proporcional_ultimo_ano",
+      "k": 5000,
+      "acertos": 1576,
+      "precisao": 0.3152,
+      "rs_mi_em_trafos_que_saturaram": 73.37,
+      "rs_mi_antecipado_sem_necessidade": 93.9305
+    },
+    {
+      "metodo": "proporcional_consumidores",
+      "k": 1000,
+      "acertos": 657,
+      "precisao": 0.657,
+      "rs_mi_em_trafos_que_saturaram": 29.2155,
+      "rs_mi_antecipado_sem_necessidade": 11.8655
+    },
+    {
+      "metodo": "proporcional_consumidores",
+      "k": 2000,
+      "acertos": 1318,
+      "precisao": 0.659,
+      "rs_mi_em_trafos_que_saturaram": 59.7695,
+      "rs_mi_antecipado_sem_necessidade": 24.4865
+    },
+    {
+      "metodo": "proporcional_consumidores",
+      "k": 5000,
+      "acertos": 2950,
+      "precisao": 0.59,
+      "rs_mi_em_trafos_que_saturaram": 136.3272,
+      "rs_mi_antecipado_sem_necessidade": 76.3153
+    }
+  ],
+  "previsao_totais": {
+    "ano_base": 2025,
+    "adicao_prevista_3a_mw": 1637.8894050000001,
+    "regra_total": "ritmo de adição do último ano mantido"
+  },
+  "projecao": [
+    {
+      "ano": 2026,
+      "trafos_que_saturam": 3903,
+      "reforco_rs_mi": 160.705,
+      "trafos_saturados_acumulado": 15495
+    },
+    {
+      "ano": 2027,
+      "trafos_que_saturam": 4592,
+      "reforco_rs_mi": 188.292,
+      "trafos_saturados_acumulado": 20087
+    },
+    {
+      "ano": 2028,
+      "trafos_que_saturam": 4076,
+      "reforco_rs_mi": 162.978,
+      "trafos_saturados_acumulado": 24163
+    },
+    {
+      "ano": 2029,
+      "trafos_que_saturam": 3666,
+      "reforco_rs_mi": 129.914,
+      "trafos_saturados_acumulado": 27829
+    },
+    {
+      "ano": 2030,
+      "trafos_que_saturam": 3565,
+      "reforco_rs_mi": 107.387,
+      "trafos_saturados_acumulado": 31394
+    }
+  ],
+  "sensibilidade_alimentadores": [
+    {
+      "fator_simultaneidade": 0.3,
+      "frac_alimentadores_acima": 0.1897
+    },
+    {
+      "fator_simultaneidade": 0.5,
+      "frac_alimentadores_acima": 0.5815
+    },
+    {
+      "fator_simultaneidade": 0.7,
+      "frac_alimentadores_acima": 0.7429
+    },
+    {
+      "fator_simultaneidade": 0.9,
+      "frac_alimentadores_acima": 0.8182
+    }
+  ],
+  "sistema": {
+    "gd_total_mw": 2967.435375,
+    "carga_media_mw": 1291.7055119863012,
+    "alimentadores_com_carga": 638
+  },
+  "alimentadores_ano_saturacao": [
+    {
+      "ano": 2025.0,
+      "alimentadores": 474
+    },
+    {
+      "ano": 2026.0,
+      "alimentadores": 45
+    },
+    {
+      "ano": 2027.0,
+      "alimentadores": 27
+    },
+    {
+      "ano": 2028.0,
+      "alimentadores": 11
+    },
+    {
+      "ano": 2029.0,
+      "alimentadores": 5
+    },
+    {
+      "ano": 2030.0,
+      "alimentadores": 6
+    },
+    {
+      "ano": 2031.0,
+      "alimentadores": 3
+    },
+    {
+      "ano": 2032.0,
+      "alimentadores": 4
+    },
+    {
+      "ano": 2033.0,
+      "alimentadores": 3
+    },
+    {
+      "ano": 2034.0,
+      "alimentadores": 1
+    },
+    {
+      "ano": 2035.0,
+      "alimentadores": 2
+    },
+    {
+      "ano": 9999.0,
+      "alimentadores": 57
+    }
+  ],
+  "validacao_ampliacao": {
+    "nao_saturado_2022": {
+      "frac_ampliados_ate_2025": 0.0846826367358951,
+      "trafos": 197077
+    },
+    "saturado_2022": {
+      "frac_ampliados_ate_2025": 0.30504689593568557,
+      "trafos": 2239
+    }
+  },
+  "validacao_pedidos": {
+    "municipios": 108,
+    "spearman": -0.273716351796551,
+    "spearman_obras_x_frac_trafos_urbanos": -0.5544684156691798,
+    "por_quartil": [
+      {
+        "quartil_alerta": "Q1",
+        "municipios": 27.0,
+        "frac_obras": 0.0665,
+        "frac_alerta_media": 0.0068
+      },
+      {
+        "quartil_alerta": "Q2",
+        "municipios": 27.0,
+        "frac_obras": 0.0612,
+        "frac_alerta_media": 0.0149
+      },
+      {
+        "quartil_alerta": "Q3",
+        "municipios": 27.0,
+        "frac_obras": 0.0416,
+        "frac_alerta_media": 0.0226
+      },
+      {
+        "quartil_alerta": "Q4",
+        "municipios": 27.0,
+        "frac_obras": 0.0302,
+        "frac_alerta_media": 0.0448
+      }
+    ]
+  },
+  "checagem_registro": {
+    "registro_aneel_mw_uf": 3216.17625,
+    "bdgd_gd_bt_mw_2025": 1974.2622549999999,
+    "bdgd_gd_mt_mw_2025": 993.1731200000002
+  }
+}
