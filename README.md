@@ -22,6 +22,92 @@ de reforço, usando apenas dados abertos.
 
 ![evolução](reports/figures/01_evolucao.png)
 
+A metodologia completa (definições, fórmulas, desenho do backtest e premissas) está em
+[`docs/metodologia.md`](docs/metodologia.md).
+
+## Na prática: o que muda para quem decide
+
+### O problema hoje
+
+Sem uma lista antecipada, o reforço de trafo por causa de GD tende a ser reativo. A obra aparece quando um pedido
+de conexão exige estudo, quando um cliente reclama de tensão alta ou quando o trafo é trocado depois de um defeito.
+Os números deste projeto dão a escala disso na Energisa MT:
+
+* **13.241 trafos** que não estavam saturados em dez/2022 saturaram até dez/2025.
+* Dos 2.239 trafos que já estavam saturados em 2022, **1.556 (69%) continuavam com o mesmo kVA em 2025**
+  ([`reports/resumo_decisao.json`](reports/resumo_decisao.json)).
+* Priorizar pela regra intuitiva, "onde já tem mais GD", põe **metade do dinheiro antecipado em trafos que não
+  saturam** no horizonte: só 49% do R$ da lista de 1.000 cairia em trafos que de fato saturaram.
+
+### O que se ganha
+
+| Ganho | Quanto | De onde vem o número |
+|---|---|---|
+| Uma lista que acerta mais | 802 dos 1.000 trafos da lista de dez/2022 saturaram até 2025, contra 657 com a melhor regra simples e 362 com "maior penetração hoje" | **Medido:** backtest point-in-time ([`backtest_reforco_rs.csv`](reports/backtest_reforco_rs.csv)) |
+| Dinheiro antecipado no lugar certo | 84% do R$ da lista de 1.000 vai para trafos que saturaram, contra 71% (proporcional aos consumidores) e 49% (maior penetração) | **Medido** (acertos) com **custo ilustrativo** ([`resumo_decisao.csv`](reports/resumo_decisao.csv)) |
+| Antecedência | a lista montada em dez/2022 acerta o que acontece até dez/2025: até 3 anos para programar a obra | **Desenho** do backtest |
+| Um critério ligado ao problema real | trafos saturados em 2022 foram trocados por um maior 3,6 vezes mais (30,5% contra 8,5%) | **Medido** ([`validacao_ampliacao_trafos.csv`](reports/validacao_ampliacao_trafos.csv)) |
+| Orçamento plurianual | 3.903 trafos e cerca de R$ 161 mi em 2026; cerca de R$ 750 mi de 2026 a 2030 | **Premissa:** ritmo de 2025 e custos ilustrativos ([`projecao_reforco.csv`](reports/projecao_reforco.csv)) |
+
+O ganho não é gastar menos com reforço, porque a GD vai continuar chegando. É gastar no trafo certo, antes do
+problema, com obra programada em vez de emergencial. A diferença de custo entre obra programada e emergencial
+não foi medida aqui.
+
+### Por que aplicar
+
+* **Conexão de micro e minigeração é obrigação da distribuidora, com prazos regulados** (REN ANEEL 1.000/2021 e
+  Lei 14.300/2022). Quando a conexão provoca inversão do fluxo de potência no posto de transformação, a
+  distribuidora pode exigir obras. Se a obra só é descoberta na análise do pedido, ela entra no caminho crítico
+  da conexão. Com a lista, ela pode ser feita antes.
+* **Qualidade do produto:** GD acima da capacidade do trafo eleva a tensão no secundário ao meio-dia. A tensão em
+  regime permanente é acompanhada pelos indicadores DRP e DRC do PRODIST Módulo 8, com compensação ao consumidor
+  quando os limites são violados, além de gerar reclamações.
+* **Plano de obras com justificativa:** a lista com ano previsto de saturação entra no plano de investimentos e no
+  orçamento plurianual, com um critério explícito e reproduzível para defender cada obra.
+* **O crescimento continua:** foram 546 MW de GD nova na baixa tensão só em 2025, e no backtest a regra do
+  último ano subestimou o crescimento em 30%.
+
+### Como aplicar (roteiro de adoção)
+
+1. **Trocar ou complementar os dados públicos por dados internos.**
+   * Cadastro de GD do sistema comercial com a **data do pedido**, não só a da conexão. Isso antecipa o sinal em
+     meses.
+   * Pedidos de conexão em análise **por trafo**. O dado público não identifica o trafo; o interno identifica.
+   * **Telemetria de subestações e religadores:** a potência ativa no disjuntor do alimentador e nos religadores
+     com medição mostra fluxo reverso ao meio-dia. Isso substitui a premissa mais sensível do projeto (o fator
+     de simultaneidade, que leva de 19% a 82% dos alimentadores acima do critério) por medição.
+   * Medidores inteligentes ou telemedição de trafos e as reclamações de tensão, para confirmar a saturação.
+   * GIS, para a topologia do secundário.
+2. **Calibrar as premissas** em [`configs/premissas.yaml`](configs/premissas.yaml): o limite usado pela
+   engenharia (por exemplo, um critério de tensão), os tamanhos padrão e o custo do banco de preços, e o fator
+   de simultaneidade medido.
+3. **Piloto de um trimestre:** medir ou inspecionar os 200 primeiros trafos da lista de 2026 (tensão no
+   secundário ao meio-dia, fluxo reverso) e uma amostra aleatória de trafos com GD como controle. O indicador
+   é a fração de trafos com problema confirmado em cada grupo. A referência do backtest é 80% de acerto na lista
+   de 1.000.
+4. **Rotina:**
+   * rodar o pipeline a cada novo snapshot, ou todo mês com os dados internos;
+   * publicar no Power BI: `data/processed/trafos_previsao.parquet` (uma linha por trafo, com alimentador,
+     município, kVA, GD e ano previsto de saturação) e `reports/alimentadores_previsao.csv` já estão nesse
+     formato;
+   * um robô pode cruzar cada pedido de conexão novo com a lista e alertar quando ele cai num trafo previsto
+     para saturar.
+
+   Quem usa: o planejamento (plano de obras), o atendimento a acessantes (prazos de conexão) e a qualidade e
+   operação (reclamações de tensão).
+5. **Critérios de sucesso:**
+   * fração das obras de reforço por GD feitas antes da saturação;
+   * prazo médio de conexão em trafos da lista contra os demais;
+   * reclamações de tensão nos trafos tratados;
+   * acerto da lista a cada novo snapshot.
+
+### Limites de uso
+
+* **Não é estudo de fluxo de potência.** A lista diz onde medir e estudar primeiro, não aprova a obra.
+* **Os R$ são ilustrativos.** Servem para comparar estratégias, não como orçamento.
+* **O total de GD futura é incerto.** Confie mais na ordem da lista do que no número de trafos por ano.
+* **O critério de alimentador é triagem** e depende muito do fator de simultaneidade.
+
 ## 1. Diagnóstico: a saturação quintuplicou em três anos
 
 Critério: **GD instalada na baixa tensão ≥ potência nominal do trafo** (kW ≥ kVA), um indicador simples de risco
@@ -35,6 +121,10 @@ de inversão de fluxo no posto de transformação (ver [premissas](configs/premi
 | 2023 | 103,0 mil | 1.027 MW | 4.359 | 2,3% |
 | 2024 | 160,1 mil | 1.516 MW | 7.673 | 3,9% |
 | 2025 | 214,2 mil | 1.974 MW | 11.592 | 5,7% |
+
+**O que isso significa:** o número de trafos saturados cresceu mais rápido que a própria GD. A GD de BT
+triplicou de 2022 a 2025, e os trafos saturados quintuplicaram, porque cada trafo que cruza o limite continua
+recebendo GD.
 
 * **O problema está nos trafos de 45 kVA para cima:** 16,4% dos trafos de 45 a 75 kVA e 15,2% dos acima de 75 kVA
   já estão saturados, contra 3,0% dos de até 10 kVA (em geral rurais, com um ou dois consumidores).
@@ -62,6 +152,10 @@ total de outras formas.
 | Acertos entre os 1.000 primeiros da lista | **802** | 657 | 362 | 153 |
 | Acertos entre os 5.000 primeiros | **3.116** | 2.950 | 1.695 | 1.576 |
 | Erro absoluto médio do kW adicionado por trafo | **4,8 kW** | 5,0 kW | 7,0 kW | 7,8 kW |
+
+**O que isso significa:** com um orçamento para 1.000 reforços preventivos em dez/2022, a lista do modelo teria
+acertado 4 de cada 5 trafos. A regra intuitiva acertaria cerca de 1 em cada 3. Uma lista aleatória teria
+average precision de 0,07 (a taxa de saturação no período), contra 0,37 do modelo.
 
 **Em reais** (custos ilustrativos): se em dez/2022 a distribuidora reforçasse preventivamente os 1.000 primeiros
 trafos de cada lista, com o modelo **R$ 37 mi** iriam para trafos que de fato saturaram e R$ 7 mi seriam
@@ -97,6 +191,10 @@ que no backtest se mostrou conservador. Cada trafo é reforçado no ano em que c
 | 2028 | 4.076 | 163 | 24.163 |
 | 2029 | 3.666 | 130 | 27.829 |
 | 2030 | 3.565 | 107 | 31.394 |
+
+**O que isso significa:** mantido o ritmo de 2025, o número de trafos saturados quase triplica até 2030. É uma
+ordem de grandeza para o orçamento plurianual, não um orçamento: os custos são ilustrativos e, no backtest, a
+regra do ritmo subestimou o crescimento.
 
 ![projeção](reports/figures/04_projecao.png)
 
@@ -136,9 +234,10 @@ src/gdhc/
   painel.py      ligação de trafos entre snapshots pela posição, features point-in-time
   modelo.py      alocação do crescimento (LightGBM), baselines e métricas
   rede.py        critério de saturação, custo de reforço, ano de saturação, alimentadores
-scripts/         01_baixar_aneel, 02_build_bdgd, 03_analise, 04_validacao, 05_figuras
+scripts/         01_baixar_aneel, 02_build_bdgd, 03_analise, 04_validacao, 05_figuras, 06_resumo_decisao
 configs/         recorte (distribuidora, snapshots) e premissas de engenharia e custo
 docs/dados.md    decisões de dados
+docs/metodologia.md  definições, fórmulas, desenho do backtest e premissas
 ```
 
 ## Reproduzir
@@ -150,6 +249,7 @@ python scripts/02_build_bdgd.py     # 8 snapshots da BDGD (~1 GB cada, processad
 python scripts/03_analise.py        # diagnóstico, backtest e projeção (~25 min com 2 núcleos)
 python scripts/04_validacao.py      # validações externas (troca de trafos, pedidos de conexão)
 python scripts/05_figuras.py
+python scripts/06_resumo_decisao.py # indicadores de decisão a partir dos relatórios
 pytest
 ```
 
